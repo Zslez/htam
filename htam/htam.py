@@ -86,7 +86,7 @@ def frac(x):
         power = 10 ** (len(str(x)) - len(str(int(x))) - 1)
         ix = int(x)
         x *= power
-        return int(x) - ix * int(power)
+        return int(x) - ix * power
     except:
         return None
 
@@ -107,15 +107,18 @@ def root(x, y = 2):
 
 
 # GCD
-def gcd(x, y):
+def gcd(x, y, *args):
     '''\nthis function returns the greatest common divisor of two numbers\nit returns "None" if 1 or more arguments are not valid
     \nex1.\n>>> gcd(120, 88)\n8
     \nex2.\n>>> gcd(33, 44)\n11
-    \nex3.\n>>> gcd(15, 16)\n1'''
+    \nex3.\n>>> gcd(110, 230, 350, 470, 590)\n10'''
 
     try:
         while y > 0:
             x, y = y, x % y
+        for i in args:
+             while i > 0:
+                x, i = i, x % i
         return x
     except:
         return None
@@ -123,13 +126,17 @@ def gcd(x, y):
 
 
 # LCM
-def lcm(x, y):
+def lcm(x, y, *args):
     '''\nthis function returns the least common multiple of two numbers\nit returns "None" if 1 or more arguments are not valid
     \nex1.\n>>> lcm(3, 6)\n6
-    \nex2.\n>>> lcm(4, 22)\n44'''
+    \nex2.\n>>> lcm(4, 22)\n44
+    \nex3.\n>>> lcm(33, 44, 55, 66)\n660'''
 
     try:
-        return int((x*y)/gcd(x,y))
+        result = int(x*y/gcd(x, y))
+        for i in args:
+            result = int(result*i/gcd(result, i))
+        return result
     except:
         return None
 
@@ -140,7 +147,7 @@ def mod(x, y, z = 0):
     '''\nz is an integer automatically set to 0\n
         \nthis function returns the solution to the equation
         \n      zk ≡ x (mod y)
-        \nthe result will be k = "solution" (mod y) with "solution" returned
+        \nthe result will be k = "solution" (mod y)
         \nthis function will return "None" if the equation has no solution, or if 1 or more arguments are not valid
         \nif z is missing or set to 0 this fuction will return
         \n        x (mod y)
@@ -362,7 +369,7 @@ def tot(x):
 # Base Converter
 def base(x, y = 10, z = 2):
     '''\ny is an integer automatically set to 10\nz is an integer automatically set to 2
-    \nthis function return x converted from base y to base z
+    \nthis function returns x converted from base y to base z
     \nif z is greater than 10 the result will have a space between each digit\nat the same time, if y is greater than 10, the input x must be a string with spaces between each digit\nit returns "None" if 1 or more arguments are not valid, or if x can't exist in base y
     \nex1.\n>>> base(123)\n1111011
     \nex2.\n>>> base(34, 8, 13)\n2 2
@@ -424,6 +431,24 @@ def base(x, y = 10, z = 2):
 
 
 
+# Primitive root mod n
+def primitive(x, y = 1):
+    '''\ny is an integer automatically set to 1
+    \nthis function returns the number of primitive roots mod x if y = 1\nit returns the list of primitive roots mod x if y = 2\n
+    \nex1.\n>>> primitive(17)\n8
+    \nex2.\n>>> primitive(17, 2)\n[3, 5, 6, 7, 10, 11, 12, 14]'''
+    try:
+        coset = {i for i in range(1, x) if gcd(i, x) == 1}
+        result = [k for k in range(1, x) if coset == {pow(k, j, x) for j in range(1, x)}]
+        if y == 1:
+            return len(result)
+        elif y == 2:
+            return result
+    except:
+        return None
+
+
+
 # Info
 def info(x = 0):
     '''\nrun htam.info() to see general informations about htam functions'''
@@ -451,11 +476,12 @@ def info(x = 0):
     # All Functions that takes 2 or 3 arguments respectively
     arg2 = ['root', 'div', 'gcd', 'lcm', 'pi', 'rel']
     arg3 = ['mod', 'base']
+    args = ['gcd', 'lcm']
 
     if x == 0:
         print(
             '\n' + __pack.upper() + '\n'
-            '\nver. 1.2.1\n '
+            '\nver. 1.3.1\n '
             '\nHere\'s a list of functions ' + __pack + ' can perform. \n'
             )
         for i in funcdict.keys():
@@ -468,6 +494,10 @@ def info(x = 0):
             __print_info(x, ',y')
         elif x in arg3:
             __print_info(x, ', y, z')
+        elif x in args and x in arg2:
+            __print_info(x, ', y, *args')
+        elif x in args and x not in arg2:
+            __print_info(x, ', *args')
         else:
             __print_info(x)
         print(funcdict[x].__doc__)
