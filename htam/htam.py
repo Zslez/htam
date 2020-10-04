@@ -481,7 +481,7 @@ def info(x = 0):
     if x == 0:
         print(
             '\n' + __pack.upper() + '\n'
-            '\nver. 1.3.1\n '
+            '\nver. 1.3.5\n '
             '\nHere\'s a list of functions ' + __pack + ' can perform. \n'
             )
         for i in funcdict.keys():
