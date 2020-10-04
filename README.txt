@@ -1,4 +1,3 @@
-https://img.shields.io/static/v1?label=Python&message=3.x&color=informational
 Htam is my very first coding project, it is a math Python library and it includes a lot of useful math functions.
 
 I created it because I like maths and to test my Python skills.
