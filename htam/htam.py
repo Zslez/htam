@@ -11,7 +11,8 @@
 #The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 #THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-#INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+#INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 #CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -27,15 +28,12 @@ def __print_info(func, ops = ''):
     o = '(x' + ops + ')'
     a = 34
     b = (a - len(__pack + '.' +  func + o))/2
-    b1 = 0
-    b2 = 0
     
-
     if b != int(b):
         b1 = int((a - len(__pack + '.' + func + o))//2)
         b2 = int((a - len(__pack + '.' + func + o))/2) - 1
     else:
-        b1 = b2 = int((a - len(__pack + '.' + func + o))/2) - 1
+        b = int(b - 1)
     
     print('\n' + '=============== INFO ===============')
     print('[]' + ' '*(a-2) + '[]')
@@ -215,7 +213,7 @@ def div(x, y = 1):
 
 # Prime
 def prime(x):
-    '''\nthis function returns the xth prime number\nit returns "None" if the argument is not valid
+    '''\nthis function returns the x-th prime number\nit returns "None" if the argument is not valid
     \nex1.\n>>> prime(10)\n29
     \nex2.\n>>> prime(8266)\n84857'''
 
@@ -244,9 +242,6 @@ def rel(x, y = 0):
     \nex2.\n>>> rel(14, 27)\nTrue
     \nex3.\n>>> rel(2, 120)\nFalse'''
     try:
-        if x == 0 or x == 1:
-            return False
-
         if y == 0:
             for i in range(2, int(x**(1/2)) + 1):
                 if x % i == 0:
@@ -255,10 +250,13 @@ def rel(x, y = 0):
                     continue
             return True
         else:
-                if gcd(x, y) == 1:
-                    return True
-                else:
-                    return False
+            if x == 1 or x == -1 or y == 1 or y == -1:
+                return True
+
+            if gcd(x, y) == 1:
+                return True
+            else:
+                return False
     except:
         return None
 
@@ -283,15 +281,16 @@ def pi(x, y = 1):
 
 # Factors
 def primefac(x):
-    '''\nthis function returns a list of x's prime factors\nit returns "None" if the argument is not valid
+    '''\nthis function returns a list of abs(x)'s prime factors\nit returns "None" if the argument is not valid
     \nex1.\n>>> primefac(120)\n[2, 2, 2, 3, 5]
     \nex2.\n>>> primefac(13)\n[13]'''
     try:
+        x = abs(x)
         factors = []
 
         primelist = [2]
         num = 3
-        while len(primelist) < x:
+        while primelist[-1] < x:
             for p in primelist:
                 if num % p == 0:
                     break
@@ -393,8 +392,7 @@ def base(x, y = 10, z = 2):
         xlist.append(''.join(count))
         
     else:
-        for i in str(x):
-            xlist.append(i)
+        xlist = [i for i in str(x)]
 
     
     a = len(xlist)
@@ -449,6 +447,18 @@ def primitive(x, y = 1):
 
 
 
+# Fibonacci
+def fib(x):
+    '''\nthis function returns the x-th fibonacci number, it returns "None" if the argument is not valid
+    \nex1.\n>>> fib(0)\n1
+    \nex2.\n>>> fib(20)\n6765'''
+    a, b = 0, 1
+    for _ in range(x):
+        a, b = b, a + b
+    return a
+
+
+
 # Info
 def info(x = 0):
     '''\nrun htam.info() to see general informations about htam functions'''
@@ -470,24 +480,26 @@ def info(x = 0):
         'col': col,
         'rel': rel,
         'tot': tot,
-        'base': base
+        'base': base,
+        'primitive': primitive,
+        'fib': fib,
     }
 
     # All Functions that takes 2 or 3 arguments respectively
-    arg2 = ['root', 'div', 'gcd', 'lcm', 'pi', 'rel']
+    arg2 = ['root', 'div', 'gcd', 'lcm', 'pi', 'rel', 'primitive']
     arg3 = ['mod', 'base']
     args = ['gcd', 'lcm']
 
     if x == 0:
         print(
             '\n' + __pack.upper() + '\n'
-            '\nver. 1.3.5\n '
-            '\nHere\'s a list of functions ' + __pack + ' can perform. \n'
+            '\nver. 1.4.1\n '
+            '\nHere the ' + str(len(funcdict)) + ' functions ' + __pack + ' can perform. \n'
             )
         for i in funcdict.keys():
-            print('>    ' + i)
+            print('>>> ' + i)
         print(
-            '\nrun ' + __pack + '.info(*function_name*) to see more detailed informations for that function.'
+            '\nrun ' + __pack + '.info("function_name") to see more detailed informations for that function.'
             )
     elif x in funcdict.keys():
         if x in arg2:
@@ -496,7 +508,7 @@ def info(x = 0):
             __print_info(x, ', y, z')
         elif x in args and x in arg2:
             __print_info(x, ', y, *args')
-        elif x in args and x not in arg2:
+        elif x in args:
             __print_info(x, ', *args')
         else:
             __print_info(x)
