@@ -1,5 +1,5 @@
-# HTAM [![PyPi version](https://img.shields.io/badge/python-3-blue.svg)](https://pypi.python.org/pypi/missingno/) [![](https://img.shields.io/pypi/v/htam)](https://joss.theoj.org/papers/10.21105/joss.00547) [![](https://img.shields.io/pypi/dm/htam)](https://www.python.org/downloads/) [![](https://img.shields.io/pypi/l/htam)](https://github.com/ResidentMario/missingno/blob/master/LICENSE.md)
-
+HTAM
+==========
 
 Htam is my very first coding project, it is a math Python library and it includes a lot of useful math functions.
 
@@ -10,16 +10,40 @@ I created it because I like maths and to test my Python skills.
 
 If you run into any issue, please send me an email and i will update the package as soon as I can.
 
-I'm still working to improve this package, so, if you have any idea for a future update or a re-styling of an already existing function, please let me know with an email, I would really appreciate it.
+I'm still working, and always looking for improvents and changes for this package, so, if you have any idea for a future update or a re-styling of an already existing function, please let me know with an email, I would really appreciate it.
 
 Enjoy :)
+
+
+Email
+==========
+cristiano.sanso.04@gmail.com
 
 
 
 Change Log
 ==========
 
-1.3.5 (4/10/2020)
+1.4.1 (22/10/2020)
+------------------
+Minor Corrections
+
+1.4.0 (14/10/2020)
+------------------
+New math function:
+
+    1) "htam.fib" >>> n-th Fibonacci number
+
+Various Improvements:
+
+    - "htam.primefac" speed of execution increased
+    - fixed a bug in  "htam.rel" that made this function return a wrong result for 0, 1 and -1
+    - some random code reduction
+    - removed some unnecessary variables
+
+Other Minor Corrections
+
+1.3.9 (4/10/2020)
 ------------------
 Minor Corrections
 
@@ -73,7 +97,7 @@ Other Changes:
 
 Various improvements:
 
-    - "htam.pi" function speed of execution increased
+    - "htam.pi" speed of execution increased
 
     - "htam.floor" function is now literally a 1-line code, maybe i'll remove it in the future
 
@@ -101,12 +125,12 @@ First Release >>> 13 math functions included:
     1)  "htam.floor"            >>>   floor
     2)  "htam.ceil"             >>>   ceiling
     3)  "htam.frac"            >>>   fractional part
-    4)  "htam.root"            >>>   nth root of a number
+    4)  "htam.root"            >>>   n-th root of a number
     5)  "htam.mod"            >>>   linear congruence solver
     6)  "htam.gcd"             >>>   greatest common divisor
     7)  "htam.lcm"              >>>   least common multiple
     8)  "htam.div"               >>>   divisors of a number
-    9)  "htam.prime"          >>>   nth prime number
+    9)  "htam.prime"          >>>   n-th prime number
     10) "htam.pi"                 >>>   number of primes less than a given number (pi function)
     11) "htam.primefac"    >>>   prime factorization of a number
     12) "htam.fac"               >>>   factorial of a number
