@@ -1,3 +1,6 @@
+[![PyPi version](https://img.shields.io/badge/python-3-blue.svg)](https://pypi.python.org/pypi/missingno/) [![](https://img.shields.io/pypi/v/htam)](https://joss.theoj.org/papers/10.21105/joss.00547) [![](https://img.shields.io/pypi/dm/htam)](https://www.python.org/downloads/) [![](https://img.shields.io/pypi/l/htam)](https://github.com/ResidentMario/missingno/blob/master/LICENSE.md)
+
+
 HTAM
 ==========
 
