@@ -19,16 +19,24 @@ cristiano.sanso.04@gmail.com
 
 # Change Log
 
-## 2.0.0 (24/12/2020) ###cambia la data###
+## 2.0.6 (24/12/2020)
+
+Minor Corrections
+
+<br>
+
+---
+
+<br>
+
+## 2.0.0 (24/12/2020)
 
 BIG UPDATE:
 
 > new class OEIS: <br>
 > - search for a sequence on https://oeis.org/ and return any attribute like description, links, comments, etc. <br>
 > - if no argument is given for the constructor, OEIS will return a random sequence from https://oeis.org/
-
-> new class Wolfram: <br>
-> - perform a search on https://www.wolframalpha.com/ and return almost any result, so far you can't get images and plots but maybe I'll add the possibility to get the images and plots' urls
+> - WARNING: using this class for the first time may install some required missing python modules
 
 Various Improvements:
 
@@ -83,8 +91,8 @@ Other Minor Corrections
 
 <br>
 
-1.3.9 (4/10/2020)
-------------------
+## 1.3.9 (4/10/2020)
+
 Minor Corrections
 
 <br>
@@ -93,8 +101,8 @@ Minor Corrections
 
 <br>
 
-1.3.0 (3/10/2020)
-------------------
+## 1.3.0 (3/10/2020)
+
 New math function:
 
 > - "htam.primitive" >>>   primitive root
@@ -111,8 +119,8 @@ Other Minor Corrections
 
 <br>
 
-1.2.2 (28/09/2020)
-------------------
+## 1.2.2 (28/09/2020)
+
 Minor Corrections
 
 <br>
@@ -121,8 +129,8 @@ Minor Corrections
 
 <br>
 
-1.2.0 (27/09/2020)
-------------------
+## 1.2.0 (27/09/2020)
+
 New math function:
 
 > - "htam.base" >>>   base converter
@@ -145,8 +153,8 @@ Other Minor Corrections
 
 <br>
 
-1.1.0 (25/09/2020)
-------------------
+## 1.1.0 (25/09/2020)
+
 Two new math functions:
 
 > - "htam.rel"  >>>   coprime checker
@@ -169,8 +177,8 @@ Various improvements:
 <br>
 
 
-1.0.4 (24/09/2020)
-------------------
+## 1.0.4 (24/09/2020)
+
 Minor Corrections
 
 <br>
@@ -179,8 +187,8 @@ Minor Corrections
 
 <br>
 
-1.0.1 (24/09/2020)
-------------------
+## 1.0.1 (24/09/2020)
+
 Now each function returns "None" when 1 or more arguments are not valid
 
 <br>
@@ -189,8 +197,8 @@ Now each function returns "None" when 1 or more arguments are not valid
 
 <br>
 
-1.0.0 (23/09/2020)
-------------------
+## 1.0.0 (23/09/2020)
+
 First Release >>> 13 math functions included:
 
 > 1)  "htam.floor"            >>>   floor
