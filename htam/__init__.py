@@ -518,7 +518,7 @@ def info(x = 0):
 
     if x == 0:
         print(f'\n{__pack.upper()}\n'
-            '\nver. 2.0.10\n'
+            '\nver. 2.0.11\n'
             f'\nHere the {str(len(funcdict))} functions available in {__pack}\n')
         for i in funcdict.keys():
             print('>>> ' + i)

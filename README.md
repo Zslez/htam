@@ -17,7 +17,6 @@
 &nbsp; &nbsp; &bull; [1.2.0](#1.2.0-(27/09/2020)) <br>
 &nbsp; &nbsp; &bull; [1.1.0](#1.1.0-(25/09/2020)) <br>
 &nbsp; &nbsp; &bull; [1.0.0](#1.0.0-(23/09/2020)) <br>
-[Description](#Description) <br>
 
 <br>
 
@@ -69,7 +68,7 @@ If it does not return any error, you installed it correctly.
 ## Linux/MacOS
 Open the Terminal, now type the command
 
-```bash
+```shell
 $ pip install htam
 ```
 
@@ -78,7 +77,7 @@ $ pip install htam
 press Enter and wait until the installation is finished.
 
 Now to assert you have `htam` installed, type
-```bash
+```shell
 $ python3
 ```
 and then
@@ -104,7 +103,7 @@ cristiano.sanso.04@gmail.com
 
 # Change Log
 
-## 2.0.10 (25/12/2020)
+## 2.0.11 (25/12/2020)
 
 Minor Corrections
 
