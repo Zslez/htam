@@ -2,13 +2,32 @@
 ![PyPI - License](https://img.shields.io/pypi/l/htam)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/htam)
 
-# HTAM
+# Contents
+
+[Description](#Description) <br>
+[Installation](#Installation) <br>
+&nbsp; &nbsp; &bull; [Windows](#Windows) <br>
+&nbsp; &nbsp; &bull; [Linux/MacOS](#Linux/MacOS) <br>
+[Start Using HTAM](#Start-Using-HTAM) <br>
+[My Email](#My-Email) <br>
+[Change Log](#Change-Log) <br>
+&nbsp; &nbsp; &bull; [2.0.0](#2.0.0-(24/12/2020)) <br>
+&nbsp; &nbsp; &bull; [1.4.0](#1.4.0-(14/10/2020)) <br>
+&nbsp; &nbsp; &bull; [1.3.0](#1.3.0-(03/10/2020)) <br>
+&nbsp; &nbsp; &bull; [1.2.0](#1.2.0-(27/09/2020)) <br>
+&nbsp; &nbsp; &bull; [1.1.0](#1.1.0-(25/09/2020)) <br>
+&nbsp; &nbsp; &bull; [1.0.0](#1.0.0-(23/09/2020)) <br>
+[Description](#Description) <br>
+
+<br>
+
+# Description
 
 Htam is my very first coding project, it is a math Python library and it includes a lot of useful math functions.
 
 If you run into any issue, please send me an email and i will update the package as soon as I can.
 
-I'm still working, and always looking for improvents and changes for this package, so, if you have any idea for a future update or a re-styling of an already existing function, please let me know with an email, I would really appreciate it.
+I'm still working, and always looking for improvents and changes for this package, so, if you have any idea for a future update or anything else, please let me know with an email.
 
 If you liked my library, please consider leaving a star to my [github repo](https://github.com/Zslez/htam), it costs just 1 minute but I'd really appreciate it.
 
@@ -16,16 +35,6 @@ Enjoy :)
 
 
 # Installation
-<br>
-
-[Windows](#Windows) <br>
-[Linux/MacOS](#Linux/MacOS) <br>
-
-<br>
-
----
-
-<br>
 
 ## Windows
 Press the `win` key, type `cmd` and press Enter to open the Command Prompt, now type the command
@@ -80,28 +89,22 @@ If it does not return any error, you installed it correctly.
 
 <br>
 
-
-
-
-
 # Start Using HTAM
 
 > - execute htam.info() to see general informations about htam and all functions included
 > - execute htam.info("<function_or_class_name>") to see detailed informations about that function/class and some examples
-> - go on 
+> - go on [my tests folder](https://github.com/Zslez/htam/tree/master/tests) to see some examples
 
 <br>
 
-
-
-# Email
+# My Email
 cristiano.sanso.04@gmail.com
 
 <br>
 
 # Change Log
 
-## 2.0.9 (25/12/2020)
+## 2.0.10 (25/12/2020)
 
 Minor Corrections
 
@@ -183,7 +186,7 @@ Other Minor Corrections
 
 <br>
 
-## 1.3.9 (4/10/2020)
+## 1.3.9 (04/10/2020)
 
 Minor Corrections
 
@@ -193,7 +196,7 @@ Minor Corrections
 
 <br>
 
-## 1.3.0 (3/10/2020)
+## 1.3.0 (03/10/2020)
 
 New math function:
 
