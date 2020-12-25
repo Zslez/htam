@@ -24,14 +24,12 @@ try:
     from requests import get
     from googlesearch import get_random_user_agent
     from bs4 import BeautifulSoup as bs
-    from urllib import parse
 except ImportError:
     print('ImportError\nInstalling missing packages...')
     from subprocess import run
     run(['pip3', 'install', 'requests'])
     run(['pip3', 'install', 'google'])
     run(['pip3', 'install', 'beautifulsoup4'])
-    run(['pip3', 'install', 'urllib'])
 
 
 # variables
@@ -150,7 +148,7 @@ this function returns the number of divisors of x, if y is 1 or missing
 
 # Prime
 def prime(x:int):
-    '''\nthis function returns the x-th prime number
+    '''\nthis function returns the x-th prime number (it returns 2 if x < 1)
 \nex1.\n>>> prime(10)\n29
 \nex2.\n>>> prime(8266)\n84857'''
     primelist, num = [2], 3
@@ -349,7 +347,7 @@ it returns the list of primitive roots mod x if y = 2\n
 # Fibonacci
 def fib(x):
     '''\nthis function returns the x-th fibonacci number, it returns "None" if the argument is not valid
-\nex1.\n>>> fib(0)\n1
+\nex1.\n>>> fib(0)\n0
 \nex2.\n>>> fib(20)\n6765'''
     a, b = 0, 1
     for _ in range(x):
@@ -357,14 +355,21 @@ def fib(x):
     return a
 
 
-
-###############################
-#                             #
-#            OEIS             #
-#                             #
-###############################
+## -------------------- OEIS -------------------- ##
 
 
+def _result(table, word):
+        try:
+            result = ''
+            for i in [bs(str(i), 'lxml') for i in table.findAll('tr')]:
+                if i.find('td', {'width': '100'}).text == f'\n{word}\n':
+                    result += i.find('td', {'width': '600'}).text
+            if result != '':
+                return result[1:-1].strip()
+            else:
+                return None
+        except:
+            return None
 
 class OEIS:
     '''search for a sequence on https://oeis.org/
@@ -373,7 +378,7 @@ if no argument is given for the constructor,
 OEIS will return a random sequence from https://oeis.org/'''
     def __init__(self, seq:str = None):
         self.__isvalid = True
-        self.__number = 339920
+        self.__number = 339960
 
         if seq != None:
             seq = str(int(seq))
@@ -419,19 +424,6 @@ OEIS will return a random sequence from https://oeis.org/'''
         return self.__url
 
     # Sequence Information
-    def __result(self, word):
-        try:
-            result = ''
-            for i in [bs(str(i), 'lxml') for i in self.__table.findAll('tr')]:
-                if i.find('td', {'width': '100'}).text == f'\n{word}\n':
-                    result += i.find('td', {'width': '600'}).text
-            if result != '':
-                return result[1:-1].strip()
-            else:
-                return None
-        except:
-            return None
-
     def description(self):
         desc = self.__html.findAll('table')[6]
         try:
@@ -455,40 +447,40 @@ OEIS will return a random sequence from https://oeis.org/'''
             return None
 
     def comments(self):
-        return OEIS(self.__seq[1:]).__result('COMMENTS')
+        return _result(self.__table, 'COMMENTS')
 
     def references(self):
-        return OEIS(self.__seq[1:]).__result('REFERENCES')
+        return _result(self.__table, 'REFERENCES')
 
     def links(self):
-        return OEIS(self.__seq[1:]).__result('LINKS')
+        return _result(self.__table, 'LINKS')
 
     def formula(self):
-        return OEIS(self.__seq[1:]).__result('FORMULA')
+        return _result(self.__table, 'FORMULA')
 
     def example(self):
-        return OEIS(self.__seq[1:]).__result('EXAMPLE')
+        return _result(self.__table, 'EXAMPLE')
 
     def mathematica(self):
-        return OEIS(self.__seq[1:]).__result('MATHEMATICA')
+        return _result(self.__table, 'MATHEMATICA')
 
     def prog(self):
-        return OEIS(self.__seq[1:]).__result('PROG')
+        return _result(self.__table, 'PROG')
 
     def crossrefs(self):
-        return OEIS(self.__seq[1:]).__result('CROSSREFS')
+        return _result(self.__table, 'CROSSREFS')
 
     def keyword(self):
-        return OEIS(self.__seq[1:]).__result('KEYWORD')
+        return _result(self.__table, 'KEYWORD')
 
     def author(self):
-        return OEIS(self.__seq[1:]).__result('AUTHOR')
+        return _result(self.__table, 'AUTHOR')
 
     def extensions(self):
-        return OEIS(self.__seq[1:]).__result('EXTENSIONS')
+        return _result(self.__table, 'EXTENSIONS')
 
     def status(self):
-        return OEIS(self.__seq[1:]).__result('STATUS')
+        return _result(self.__table, 'STATUS')
 
 
 
@@ -525,8 +517,8 @@ def info(x = 0):
     args = ['gcd', 'lcm']
 
     if x == 0:
-        print('\n' + __pack.upper() + '\n'
-            '\nver. 2.0.6\n '
+        print(f'\n{__pack.upper()}\n'
+            '\nver. 2.0.9\n'
             f'\nHere the {str(len(funcdict))} functions available in {__pack}\n')
         for i in funcdict.keys():
             print('>>> ' + i)

@@ -1,27 +1,119 @@
+![PyPI - Downloads](https://img.shields.io/pypi/dd/htam)
+![PyPI - License](https://img.shields.io/pypi/l/htam)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/htam)
+
 # HTAM
 
 Htam is my very first coding project, it is a math Python library and it includes a lot of useful math functions.
-
-> - run htam.info() to see general informations about htam and all functions included
-> - run htam.info(function_name) to see detailed informations about that function
 
 If you run into any issue, please send me an email and i will update the package as soon as I can.
 
 I'm still working, and always looking for improvents and changes for this package, so, if you have any idea for a future update or a re-styling of an already existing function, please let me know with an email, I would really appreciate it.
 
+If you liked my library, please consider leaving a star to my [github repo](https://github.com/Zslez/htam), it costs just 1 minute but I'd really appreciate it.
+
 Enjoy :)
+
+
+# Installation
+<br>
+
+[Windows](#Windows) <br>
+[Linux/MacOS](#Linux/MacOS) <br>
+
+<br>
+
+---
+
+<br>
+
+## Windows
+Press the `win` key, type `cmd` and press Enter to open the Command Prompt, now type the command
+
+```bash
+> pip install htam
+```
+
+> If pip does not work, you can try pip3
+
+press Enter and wait until the installation is finished.
+
+Now to assert you have `htam` installed, type
+```bash
+> py
+```
+
+> If py does not work, you can try python or python3
+
+and then
+```
+>>> import htam
+```
+If it does not return any error, you installed it correctly.
+
+<br>
+
+---
+
+<br>
+
+## Linux/MacOS
+Open the Terminal, now type the command
+
+```bash
+$ pip install htam
+```
+
+> If pip does not work, you can try pip3
+
+press Enter and wait until the installation is finished.
+
+Now to assert you have `htam` installed, type
+```bash
+$ python3
+```
+and then
+```
+>>> import htam
+```
+If it does not return any error, you installed it correctly.
+
+<br>
+
+
+
+
+
+# Start Using HTAM
+
+> - execute htam.info() to see general informations about htam and all functions included
+> - execute htam.info("<function_or_class_name>") to see detailed informations about that function/class and some examples
+> - go on 
+
+<br>
+
 
 
 # Email
 cristiano.sanso.04@gmail.com
 
-
+<br>
 
 # Change Log
 
-## 2.0.6 (24/12/2020)
+## 2.0.9 (25/12/2020)
 
 Minor Corrections
+
+<br>
+
+---
+
+<br>
+
+## 2.0.7 (25/12/2020)
+
+Now OEIS generates all sequence's attribute when the instance is created, so getting any attribute later will take almost no time
 
 <br>
 
