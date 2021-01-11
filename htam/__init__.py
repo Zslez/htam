@@ -1,80 +1,88 @@
 # LICENSE
 
-#Copyright (c) 2020 Cristiano Sansò
+# Copyright (c) 2020 Cristiano Sansò
 
-#Permission is hereby granted, free of charge,
-#to any person obtaining a copy of this software and associated documentation files (the "Software"),
-#to deal in the Software without restriction, including without limitation the rights to
-#use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
-#and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+# Permission is hereby granted, free of charge,
+# to any person obtaining a copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+# and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-#The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-#INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-#IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-#CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-# Setup
-try:
-    from random import choice
-    from requests import get
-    from googlesearch import get_random_user_agent
-    from bs4 import BeautifulSoup as bs
-except ImportError:
-    print('ImportError\nInstalling missing packages...')
-    from subprocess import run
-    run(['pip3', 'install', 'requests'])
-    run(['pip3', 'install', 'google'])
-    run(['pip3', 'install', 'beautifulsoup4'])
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+# INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+# CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-# variables
+# pylint: disable = no-member
+
+
+# Variables
 __pack = 'htam'
+__abs = abs
+__int = int
+__len = len
+__pow = pow
+__str = str
+__sum = sum
+__list = list
+__print = print
+__range = range
+__tuple = tuple
+__filter = filter
+
+
+# Imports
+import classes
+import math
 
 
 # INFO function
 def __print_info(name, ops = ''):
     o, a = f'(x{ops})', 34
-    c = (a - len(f'{__pack}.{name}{o}'))
+    s = f'{__pack}.{name}{o}'
+    c = (a - __len(s))
     b = c / 2
     
-    if b != int(b):
-        b1 = c // 2
-        b2 = int(c / 2) - 1
+    if b != b // 1:
+        b1, b2 = c // 2, c // 2 - 1
     else:
-        b1 = b2 = int(b - 1)
-    
-    print('\n' + '=============== INFO ===============')
-    print('[]' + ' ' * (a - 2) + '[]')
-    print('[]' + ' '*  b1 + f'{__pack}.{name}{o}' + ' '*b2 + '[]')
-    print('[]' + ' ' * (a - 2) + '[]')
-    print('====================================')
+        b1 = b2 = (b - 1) // 1
+
+    __print()    
+    __print('=============== INFO ===============')
+    __print('[]' + ' ' * (a - 2)            + '[]')
+    __print('[]' + ' ' * b1 + s + ' ' * b2  + '[]')
+    __print('[]' + ' ' * (a - 2)            + '[]')
+    __print('====================================')
 
 
 
 # Fractional part
-def frac(x:int):
+def frac(x):
     '''\nthis function returns the fractional part of a number\nit returns "None" if the argument is not valid
 \nex1.\n>>> frac(12.13)\n0.13
 \nex2.\n>>> frac(-135.1010101)\n-0.1010101'''
-    power = 10 ** (len(str(x)) - len(str(int(x))) - 1)
-    ix = int(x)
+    power = 10 ** (__len(__str(x)) - __len(__str(__int(x))) - 1)
+    ix = __int(x)
     x *= power
-    return (int(x) - ix * power) / power
+    return (__int(x) - ix * power) / power
 
 
 
 # GCD
-def gcd(x:int, y:int, *args:int):
+def gcd(x, y, *args):
     '''\nthis function returns the greatest common divisor of two numbers
 \nex1.\n>>> gcd(120, 88)\n8
 \nex2.\n>>> gcd(33, 44)\n11
 \nex3.\n>>> gcd(110, 230, 350, 470, 590)\n10'''
-    x, y, args = abs(x), abs(y), [abs(i) for i in args]
+    if x < 0: x = -x
+    if y < 0: y = -y
+    args = (i if i > 0 else -i for i in args)
     while y > 0:
         x, y = y, x % y
     for i in args:
@@ -85,20 +93,20 @@ def gcd(x:int, y:int, *args:int):
 
 
 # LCM
-def lcm(x:int, y:int, *args:int):
+def lcm(x, y, *args):
     '''\nthis function returns the least common multiple of two numbers\
 \nex1.\n>>> lcm(3, 6)\n6
 \nex2.\n>>> lcm(4, 22)\n44
 \nex3.\n>>> lcm(33, 44, 55, 66)\n660'''
-    result = int(x * y / gcd(x, y))
+    result = x * y // gcd(x, y)
     for i in args:
-        result = int(result * i / gcd(result, i))
+        result = result * i // gcd(result, i)
     return result
 
 
 
 # Mod
-def mod(x:int, y:int, z:int = None):
+def mod(x, y, z = None):
     '''\nz is an integer automatically set to 0\n
 \nthis function returns the solution to the equation
 \n      zk ≡ x (mod y)
@@ -114,16 +122,15 @@ def mod(x:int, y:int, z:int = None):
             return x % y
         g = gcd(z, y)
         if g == 1:
-            if z:
-                inverse = 0
-                x, z = x % y, z % y
-                for i in range(1, y):
-                    if z * i % y == 1:
-                        inverse = i
-                        break
-                return int(x * inverse % y)
+            inverse = 0
+            x, z = x % y, z % y
+            for i in __range(1, y):
+                if z * i % y == 1:
+                    inverse = i
+                    break
+            return __int(x * inverse % y)
         else:
-            if not int(x / g) == x / g:
+            if not x // g == x / g:
                 return None
             x /= g
             z /= g
@@ -132,40 +139,43 @@ def mod(x:int, y:int, z:int = None):
 
 
 # Divisors
-def div(x:int, y:int = 1):
+def div(x, y = 1):
     '''\ny is an integer automatically set to 1
 this function returns the number of divisors of x, if y is 1 or missing
 \nit returns a tuple containing all divisors of x, if y is 2
 \nex1.\n>>> div(488)\n8
 \nex2.\n>>> div(488, 2)\n[1, 2, 4, 8, 61, 122, 244, 488]'''
-    d = (1,) + tuple(filter(lambda n: x % n == 0, range(2, x // 2 + 1))) + (x,)
+    d = (1,) + __tuple(__filter(lambda n: x % n == 0, __range(2, x // 2 + 1))) + (x,)
     if y == 1:
-        return len(d)
+        return __len(d)
     elif y == 2:
         return d
 
 
 
 # Prime
-def prime(x:int):
+def prime(x):
     '''\nthis function returns the x-th prime number (it returns 2 if x < 1)
 \nex1.\n>>> prime(10)\n29
 \nex2.\n>>> prime(8266)\n84857'''
-    primelist, num = [2], 3
-    while True:
-        for p in range(3, int(num ** (1 / 2)) + 1, 2):
-            if num % p == 0:
-                break
-        else:
-            if len(primelist) >= x:
-                return primelist[-1]
-            primelist.append(num)
-        num += 2
+    if x > 5:
+        lo = math.log(x)
+        l = __int(x * (lo + math.log(lo)))
+        pl = [2] + [0 if i % 2 == 0 else i for i in __range(3, l)]
+        for p in __range(3, __int(l ** (1 / 2)) + 1, 2):
+            for i in __range(p * 2, l, p):
+                pl[i - 2] = 0
+        return __tuple(__filter((0).__ne__, pl))[x - 1]
+    else:
+        if x < 1: return None
+        elif x == 1: return 2
+        elif x == 5: return 11
+        else: return 2 * x - 1
 
 
 
 # Relatively Prime checker
-def rel(x:int, y:int = None):
+def rel(x, y = None):
     '''\ny is an integer automatically set to None
 \nthis function returns "True" if x and y are relatively prime, it returns "False" if not
 \nif y is set to None or missing this function will return "True" if x is prime and "False" otherwise
@@ -173,7 +183,7 @@ def rel(x:int, y:int = None):
 \nex2.\n>>> rel(14, 27)\nTrue
 \nex3.\n>>> rel(2, 120)\nFalse'''
     if not y:
-        for i in range(2, int(x ** (1 / 2)) + 1):
+        for i in __range(2, __int(x ** (1 / 2)) + 1):
             if x % i == 0:
                 return False
             else:
@@ -188,26 +198,22 @@ def rel(x:int, y:int = None):
 
 
 # Primes less than a given number
-def pi(x:int, y:int = 1):
-    '''\ny is an integer automatically set to 1
+def pi(x, y = 2):
+    '''\ny is an integer automatically set to 2 (y should always be greater or equal to 2)
 this function returns the number of primes between y argument and x
 \nex1.\n>>> pi(1356)\n217
 \nex2.\n>>> pi(180623)\n16392'''
-    count = 0
-    for i in range(y, x):
-        if rel(i) == True:
-            count += 1
-    return count
+    return __sum((rel(i) for i in __range(y, x)))
 
 
 
 # Factors
-def primefac(x:int):
+def primefac(x):
     '''\nthis function returns a list of abs(x)'s prime factors
-\nex1.\n>>> primefac(120)\n[2, 2, 2, 3, 5]
-\nex2.\n>>> primefac(13)\n[13]'''
-    x, factors, primelist, num = abs(x), [], [2], 3
-    while primelist[-1] < int(x ** (1 / 2)) + 1:
+    \nex1.\n>>> primefac(120)\n[2, 2, 2, 3, 5]
+    \nex2.\n>>> primefac(13)\n[13]'''
+    x, factors, primelist, num = __abs(x), [], [2], 3
+    while primelist[-1] < __int(x ** (1 / 2)) + 1:
         for p in primelist:
             if num % p == 0:
                 break
@@ -221,7 +227,7 @@ def primefac(x:int):
                 factors.append(i)
                 x /= i
         if x == y:
-            factors.append(int(x))
+            factors.append(__int(x))
             return factors
     factors.sort()
     return factors
@@ -235,7 +241,7 @@ def fac(x):
 \nex2.\n>>> fac(12)\n479001600
 \nex2.\n>>> fac(0)\n1'''
     prod = 1
-    for i in range(1, x + 1):
+    for i in __range(1, x + 1):
         prod *= i
     return prod
 
@@ -248,13 +254,13 @@ def col(x):
 \nex2.\n>>> col(170)\n[170, 85, 256, 128, 64, 32, 16, 8, 4, 2, 1]'''
     collist = []
     while x > 1:
-        collist.append(int(x))
+        collist.append(__int(x))
         if x % 2 == 0:
             x /= 2
         else:
             x = 3 * x + 1
     else:
-        collist.append(int(x))
+        collist.append(__int(x))
     return collist
 
 
@@ -265,7 +271,7 @@ def tot(x):
 \nex1.\n>>> tot(163)\n162
 \nex2.\n>>> tot(2222)\n1000'''
     count = 0        
-    for i in range(1, x + 1):
+    for i in __range(1, x + 1):
         if gcd(x, i) == 1:
             count += 1
     return count
@@ -285,7 +291,7 @@ it returns "None" if x can't exist in base y
     
     # Separating digits
     if y > 10:
-        for i in str(x):
+        for i in __str(x):
             if i != ' ':
                 count.append(i)
             else:
@@ -296,9 +302,9 @@ it returns "None" if x can't exist in base y
                     continue
         xlist.append(''.join(count))
     else:
-        xlist = [i for i in str(x)]
+        xlist = [i for i in __str(x)]
 
-    a, base10, xlist = len(xlist), int(''.join(xlist)), [int(i) for i in xlist]
+    a, base10, xlist = __len(xlist), __int(''.join(xlist)), [__int(i) for i in xlist]
 
     # Checking Digits
     for i in xlist:
@@ -310,7 +316,7 @@ it returns "None" if x can't exist in base y
     # Conversion to base 10
     if y != 10:
         base10 = 0
-        for i in range(a):
+        for i in __range(a):
             base10 += xlist[i] * y ** (a - i - 1)
 
     # Conversion to base z
@@ -319,7 +325,7 @@ it returns "None" if x can't exist in base y
         remain = x % z
         basez_list.append(remain)
         x = x // z
-    basez = [str(basez_list[len(basez_list) - i - 1]) for i in range(len(basez_list))]
+    basez = [__str(basez_list[__len(basez_list) - i - 1]) for i in __range(__len(basez_list))]
 
     if z <= 10:
         return ''.join(basez)
@@ -335,10 +341,10 @@ def primitive(x, y = 1):
 it returns the list of primitive roots mod x if y = 2\n
 \nex1.\n>>> primitive(17)\n8
 \nex2.\n>>> primitive(17, 2)\n[3, 5, 6, 7, 10, 11, 12, 14]'''
-    coset = {i for i in range(1, x) if gcd(i, x) == 1}
-    result = [k for k in range(1, x) if coset == {pow(k, j, x) for j in range(1, x)}]
+    coset = {i for i in __range(1, x) if gcd(i, x) == 1}
+    result = [k for k in __range(1, x) if coset == {__pow(k, j, x) for j in __range(1, x)}]
     if y == 1:
-        return len(result)
+        return __len(result)
     elif y == 2:
         return result
 
@@ -350,145 +356,22 @@ def fib(x):
 \nex1.\n>>> fib(0)\n0
 \nex2.\n>>> fib(20)\n6765'''
     a, b = 0, 1
-    for _ in range(x):
+    for _ in __range(x):
         a, b = b, a + b
     return a
 
 
-## -------------------- OEIS -------------------- ##
 
-
-def _result(table, word):
-        try:
-            result = ''
-            for i in [bs(str(i), 'lxml') for i in table.findAll('tr')]:
-                if i.find('td', {'width': '100'}).text == f'\n{word}\n':
-                    result += i.find('td', {'width': '600'}).text
-            if result != '':
-                return result[1:-1].strip()
-            else:
-                return None
-        except:
-            return None
-
-class OEIS:
-    '''search for a sequence on https://oeis.org/
-and return any attribute like description, links, comments, etc.\n
-if no argument is given for the constructor,
-OEIS will return a random sequence from https://oeis.org/'''
-    def __init__(self, seq:str = None):
-        self.__isvalid = True
-        self.__number = 339960
-
-        if seq != None:
-            seq = str(int(seq))
-            if not 0 < int(seq) < self.__number:
-                self.__isvalid = False
-            self.__seq = 'A' + '0' * (6 - len(seq)) + seq
-            self.__isrand = False
-        else:
-            self.__seq = str(choice(range(1, self.__number)))
-            self.__seq = 'A' + '0' * (6 - len(self.__seq)) + self.__seq
-            self.__isrand = True
-
-        self.__url = f'https://oeis.org/search?q={self.__seq}'
-        self.__html = bs(get(self.__url, headers = {'user_agent': get_random_user_agent()}).text, 'lxml')
-        self.__elem = self.__html.find('p', {'style': 'text-indent: -1em; margin-left: 1em; margin-top: 0; margin-bottom: 0;'})
-        self.__table = self.__html.findAll('table')[9]
-
-    def __repr__(self):
-        if self.__isrand:
-            return f'Random Sequence: {self.__seq}'
-        elif self.__isvalid:
-            return f'Valid Sequence: {self.__seq}'
-        else:
-            return f'Invalid Sequence: {self.__seq}'
-
-    # Returning Basic Values
-    def isvalid(self):
-        return self.__isvalid
-
-    def isrand(self):
-        return self.__isrand
-        
-    def isapproved(self):
-        if OEIS(self.__seq[1:]).status() == 'approved':
-            return True
-        else:
-            return False
-
-    def sequence(self):
-        return self.__seq
-
-    def url(self):
-        return self.__url
-
-    # Sequence Information
-    def description(self):
-        desc = self.__html.findAll('table')[6]
-        try:
-            desc = '\n'.join(i for i in desc.findAll('td', {'align': 'left'})[1].text.split('\n') if i != '')
-            return desc.replace('  ', '').split('(Formerly')[0].rstrip()
-        except:
-            return None
-
-    def terms(self):
-        terms = self.__html.findAll('table')[8]
-        try:
-            for i in terms.find('tt').text.split(', '):
-                yield int(i)
-        except:
-            return None
-
-    def offset(self):
-        try:
-            return self.__elem.find('tt').text
-        except:
-            return None
-
-    def comments(self):
-        return _result(self.__table, 'COMMENTS')
-
-    def references(self):
-        return _result(self.__table, 'REFERENCES')
-
-    def links(self):
-        return _result(self.__table, 'LINKS')
-
-    def formula(self):
-        return _result(self.__table, 'FORMULA')
-
-    def example(self):
-        return _result(self.__table, 'EXAMPLE')
-
-    def mathematica(self):
-        return _result(self.__table, 'MATHEMATICA')
-
-    def prog(self):
-        return _result(self.__table, 'PROG')
-
-    def crossrefs(self):
-        return _result(self.__table, 'CROSSREFS')
-
-    def keyword(self):
-        return _result(self.__table, 'KEYWORD')
-
-    def author(self):
-        return _result(self.__table, 'AUTHOR')
-
-    def extensions(self):
-        return _result(self.__table, 'EXTENSIONS')
-
-    def status(self):
-        return _result(self.__table, 'STATUS')
+# Classes
+class Scholar(classes.Scholar): pass
+class OEIS(classes.OEIS): pass
 
 
 
 # Info
-def info(x = 0):
-    '''\nrun htam.info() to see general informations about htam functions'''
+def info(x = None):
+    '''\nrun htam.info() to see general informations about htam functions and classes'''
 
-    # Dictionary of all functions
     funcdict = {
         'frac': frac,
         'mod': mod,
@@ -516,16 +399,16 @@ def info(x = 0):
     arg3 = ['mod', 'base']
     args = ['gcd', 'lcm']
 
-    if x == 0:
-        print(f'\n{__pack.upper()}\n'
-            '\nver. 2.0.11\n'
+    if not x:
+        __print(f'\n{__pack.upper()}\n'
+            '\nver. 2.1.0\n'
             f'\nHere the {str(len(funcdict))} functions available in {__pack}\n')
         for i in funcdict.keys():
-            print('>>> ' + i)
-        print(f'\nHere the {str(len(classdict))} class available in {__pack}\n')
+            __print('>>> ' + i)
+        __print(f'\nHere the {str(len(classdict))} class available in {__pack}\n')
         for i in classdict.keys():
-            print('>>> ' + i)
-        print(f'\nrun {__pack}.info(<func_or_class_name>) to see more detailed informations for that function.')
+            __print('>>> ' + i)
+        __print(f'\nrun {__pack}.info(<func_or_class_name>) to see more detailed informations for that function.')
     elif x in funcdict.keys():
         if x in arg2:
             __print_info(x, ',y')
@@ -537,10 +420,10 @@ def info(x = 0):
             __print_info(x, ', *args')
         else:
             __print_info(x)
-        print(funcdict[x].__doc__)
+        __print(funcdict[x].__doc__)
     elif x in classdict.keys():
         if x == 'OEIS':
             __print_info(x, ', seq = None')
-        print(classdict[x].__doc__)
+        __print(classdict[x].__doc__)
     else:
-        print('No function or class named', x)
+        __print('No function or class named', x)

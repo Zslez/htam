@@ -103,6 +103,20 @@ cristiano.sanso.04@gmail.com
 
 # Change Log
 
+## 2.1.0 (30/12/2020) ##aggiungi ai contenuti##
+
+New Update:
+> new class Scholar:
+> - perform a google search on https://scholar.google.it/ and get informations about any top result like the number of citations
+
+Other Minor Corrections
+
+<br>
+
+---
+
+<br>
+
 ## 2.0.11 (25/12/2020)
 
 Minor Corrections
