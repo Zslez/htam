@@ -131,6 +131,12 @@ Minor Corrections
 
 Now OEIS generates all sequence's attribute when the instance is created, so getting any attribute later will take almost no time
 
+Various Improvements:
+
+> - `htam.prime` speed of execution extremely increased (again lol)<br>
+e.g. `htam.prime(100000)` &nbsp; took more than `4.7` seconds before, while just `0.76` seconds now <br>
+e.g. `htam.prime(1000000)` took more than `150` seconds before, while just `7.95` seconds now <br>
+
 <br>
 
 ---
@@ -141,24 +147,24 @@ Now OEIS generates all sequence's attribute when the instance is created, so get
 
 BIG UPDATE:
 
-> new class OEIS: <br>
+> new class `OEIS`: <br>
 > - search for a sequence on https://oeis.org/ and return any attribute like description, links, comments, etc. <br>
-> - if no argument is given for the constructor, OEIS will return a random sequence from https://oeis.org/
-> - WARNING: using this class for the first time may install some required missing python modules
+> - if no argument is given for the constructor, `OEIS` will return a random sequence from https://oeis.org/
+> - `WARNING`: using this class for the first time may install some required missing python modules
 
 Various Improvements:
 
-> - "htam.div" speed of execution increased <br>
-> - "htam.prime" speed of execution extremely increased<br>
-e.g. htam.prime(100000) took more than 6 mins before, while just 4.7 seconds now <br>
-> - "htam.primefac" speed of execution extremely increased<br>
-e.g. htam.primefac(1299709) took more than 6 mins before, while just 0.0016 seconds now (greve) <br>
+> - `htam.div` speed of execution increased <br>
+> - `htam.prime` speed of execution extremely increased<br>
+e.g. `htam.prime(100000)` took more than 6 mins before, while just 4.7 seconds now <br>
+> - `htam.primefac` speed of execution extremely increased<br>
+e.g. `htam.primefac(1299709)` took more than 6 mins before, while just 0.0016 seconds now (greve) <br>
 > - some random code reduction
 
 Other Changes:
-> - Functions no more returns 'None' when arguments are not valid because it's unnecessary
-> - Deleted "htam.root" because it's unnecessary since it's just 1 simple line of code
-> - Deleted "htam.floor" and "htam.ceil" because they are already in the python official math library
+> - Functions no more returns `None` when arguments are not valid because it's unnecessary
+> - Deleted `htam.root` because it's unnecessary since it's just 1 simple line of code
+> - Deleted `htam.floor` and `htam.ceil` because they are already in the python official math library
 
 Other Minor Corrections
 
@@ -182,12 +188,12 @@ Minor Corrections
 
 New math function:
 
-> - "htam.fib" >>> n-th Fibonacci number
+> - `htam.fib` >>> n-th Fibonacci number
 
 Various Improvements:
 
-> - "htam.primefac" speed of execution increased
-> - fixed a bug in  "htam.rel" that made this function return a wrong result for 0, 1 and -1
+> - `htam.primefac` speed of execution increased
+> - fixed a bug in  `htam.rel` that made this function return a wrong result for 0, 1 and -1
 > - some random code reduction
 > - removed some unnecessary variables
 
@@ -213,11 +219,11 @@ Minor Corrections
 
 New math function:
 
-> - "htam.primitive" >>>   primitive root
+> - `htam.primitive` >>>   primitive root
 
 Various Improvements:
 
-> - now "htam.gcd" and "htam.lcm" takes how many arguments you want
+> - now `htam.gcd` and `htam.lcm` can take multiple arguments
 
 Other Minor Corrections
 
@@ -241,7 +247,7 @@ Minor Corrections
 
 New math function:
 
-> - "htam.base" >>>   base converter
+> - `htam.base` >>>   base converter
 
 Other Changes:
 
@@ -249,9 +255,9 @@ Other Changes:
 
 Various Improvements:
 
-> - "htam.gcd" is now used into "htam.lcm", reducing code length
-> - "htam.frac" now uses a faster method to the number of fractional digits, reducing code length
-> - fixed a bug in the code of "htam.rel" and "htam.pi" that made these functions return a wrong result
+> - `htam.gcd` is now used into `htam.lcm`, reducing code length
+> - `htam.frac` now uses a faster method to the number of fractional digits, reducing code length
+> - fixed a bug in the code of `htam.rel` and `htam.pi` that made these functions return a wrong result
 
 Other Minor Corrections
 
@@ -265,8 +271,8 @@ Other Minor Corrections
 
 Two new math functions:
 
-> - "htam.rel"  >>>   coprime checker
-> - "htam.tot"  >>>   Euler's Totient function
+> - `htam.rel` &nbsp; >>> &nbsp; coprime checker
+> - `htam.tot` &nbsp; >>> &nbsp; Euler's Totient function
 
 Other Changes:
 
@@ -274,8 +280,8 @@ Other Changes:
 
 Various improvements:
 
-> - "htam.pi" speed of execution increased
-> - "htam.floor" function is now literally a 1-line code, maybe i'll remove it in the future
+> - `htam.pi` speed of execution increased
+> - `htam.floor` function is now literally a 1-line code, maybe i'll remove it in the future
 > - now some functions reuses other functions to improve overall performances.
 
 <br>
@@ -297,7 +303,7 @@ Minor Corrections
 
 ## 1.0.1 (24/09/2020)
 
-Now each function returns "None" when 1 or more arguments are not valid
+Now each function returns `None` when 1 or more arguments are not valid
 
 <br>
 
@@ -309,16 +315,16 @@ Now each function returns "None" when 1 or more arguments are not valid
 
 First Release >>> 13 math functions included:
 
-> 1)  "htam.floor"            >>>   floor
-> 2)  "htam.ceil"             >>>   ceiling
-> 3)  "htam.frac"            >>>   fractional part
-> 4)  "htam.root"            >>>   n-th root of a number
-> 5)  "htam.mod"            >>>   linear congruence solver
-> 6)  "htam.gcd"             >>>   greatest common divisor
-> 7)  "htam.lcm"              >>>   least common multiple
-> 8)  "htam.div"               >>>   divisors of a number
-> 9)  "htam.prime"          >>>   n-th prime number
-> 10) "htam.pi"                 >>>   number of primes less than a given number (pi function)
-> 11) "htam.primefac"    >>>   prime factorization of a number
-> 12) "htam.fac"               >>>   factorial of a number
-> 13) "htam.col"                >>>   collatz conjecture checker
+> 1) `htam.floor` >>> floor
+> 2) `htam.ceil` >>> ceiling
+> 3) `htam.frac` >>> fractional part
+> 4) `htam.root` >>> n-th root of a number
+> 5) `htam.mod` >>> linear congruence solver
+> 6) `htam.gcd` >>> greatest common divisor
+> 7) `htam.lcm` >>> least common multiple
+> 8) `htam.div` >>> divisors of a number
+> 9) `htam.prime` >>> n-th prime number
+> 10) `htam.pi` >>> number of primes less than a given number (pi function)
+> 11) `htam.primefac` >>> prime factorization of a number
+> 12) `htam.fac` >>> factorial of a number
+> 13) `htam.col` >>> collatz conjecture checker
