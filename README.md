@@ -24,11 +24,9 @@
 
 Htam is my very first coding project, it is a math Python library and it includes a lot of useful math functions.
 
-If you run into any issue, please send me an email and i will update the package as soon as I can.
+I'm **not** working on this project anymore, however you can still contact me to suggest improvents and changes for this package.
 
-I'm still working, and always looking for improvents and changes for this package, so, if you have any idea for a future update or anything else, please let me know with an email.
-
-If you liked my library, please consider leaving a star to my [github repo](https://github.com/Zslez/htam), it costs just 1 minute but I'd really appreciate it.
+If you liked my library, please consider leaving a star, it costs nothing but I'd really appreciate it.
 
 Enjoy :)
 
